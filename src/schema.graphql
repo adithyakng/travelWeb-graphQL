@@ -1,0 +1,41 @@
+type Query {
+    featuredListings: [Listing!]!,
+    listing(id: ID!): Listing
+    
+}
+
+type Mutation{
+    createListing(input: CreateListingInput): CreateListingResoponse!
+}
+
+type CreateListingResoponse {
+    code: Int!,
+    success: Boolean!,
+    message: String!
+    listing: Listing
+}
+
+input CreateListingInput {
+    title: String!,
+    description: String!,
+    numOfBeds: Int!,
+    costPerNight: Float!,
+    closedForBookings: Boolean,
+    amenities: [ID!]!
+}
+
+type Listing {
+    id: ID!,
+    title: String!,
+    description: String!,
+    numOfBeds: Int!,
+    costPerNight: Float!,
+    closedForBookings: Boolean,
+    amenities : [Amenity!]!
+}
+
+type Amenity {
+    id: ID!,
+    category: String!,
+    name: String!
+}
